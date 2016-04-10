@@ -41,7 +41,7 @@
 
 以上分解似乎完美，一起来看看“设计框架”或“蓝图”。
 
-![](spark_to_parquet/spark_to_parquet.png)
+![](https://blog.sectong.com/blog/spark_to_parquet/spark_to_parquet.jpeg)
 
 算了，不解释了，图，自己看。
 
@@ -107,6 +107,6 @@ scala代码如下：
 
 本博客中使用的SQL查询工具是[SQuirreL SQL](http://squirrel-sql.sourceforge.net)，具体JDBC配置方法请参照前面说的向左向右转。
 
-![](spark_to_parquet/squirrel-sql.png)
+![](https://blog.sectong.com/blog/spark_to_parquet/squirrel-sql.jpeg)
 
 结果看似简单，但是经历还是很有挑战的。
