@@ -30,6 +30,7 @@ import scala.Tuple2;
  * --slide_interval 30
  */
 public class AppMain {
+
 	public static final String WINDOW_LENGTH = "window_length";
 	public static final String SLIDE_INTERVAL = "slide_interval";
 	public static final String KAFKA_BROKER = "kafka_broker";
@@ -88,11 +89,11 @@ public class AppMain {
 
 		accessLogsDStream.foreachRDD(rdd -> {
 
-			// 如果DF不为空，写入(增加模式)到Parquet文件
+			// rdd to DataFrame
 			DataFrame df = sqlContext.createDataFrame(rdd, ApacheAccessLog.class);
-			if (df.count() > 0) {
-				df.write().mode(SaveMode.Append).parquet(Flags.getInstance().getParquetFile());
-			}
+			// 写入Parquet文件
+			df.write().mode(SaveMode.Append).parquet(Flags.getInstance().getParquetFile());
+
 			return null;
 		});
 

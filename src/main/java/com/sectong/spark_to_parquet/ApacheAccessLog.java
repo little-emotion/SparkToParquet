@@ -1,8 +1,6 @@
 package com.sectong.spark_to_parquet;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +12,6 @@ public class ApacheAccessLog implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 6681372116317508248L;
-
-	private static final Logger logger = Logger.getLogger("Access");
 
 	private String ipAddress;
 	private String clientIdentd;
@@ -128,13 +124,12 @@ public class ApacheAccessLog implements Serializable {
 	public static ApacheAccessLog parseFromLogLine(String logline) {
 		Matcher m = PATTERN.matcher(logline);
 		if (!m.find()) {
-			logger.log(Level.ALL, "Cannot parse logline" + logline);
-			// throw new RuntimeException("Error parsing logline");
+			// logger.log(Level.ALL, "Cannot parse logline" + logline);
+			throw new RuntimeException("Error parsing logline");
 		} else {
 			return new ApacheAccessLog(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6),
 					m.group(7), m.group(8), m.group(9));
 		}
-		return null;
 
 	}
 }
