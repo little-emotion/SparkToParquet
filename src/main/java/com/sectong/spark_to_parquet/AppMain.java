@@ -22,6 +22,7 @@ import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import kafka.serializer.StringDecoder;
 import scala.Tuple2;
+import scala.collection.Seq;
 
 /**
  * 运行程序，spark-submit --class "com.sectong.spark_to_parquet.AppMain" --master
@@ -92,7 +93,7 @@ public class AppMain {
 			// rdd to DataFrame
 			DataFrame df = sqlContext.createDataFrame(rdd, ApacheAccessLog.class);
 			// 写入Parquet文件
-			df.write().mode(SaveMode.Append).parquet(Flags.getInstance().getParquetFile());
+			df.write().partitionBy("ipAddress", "method", "responseCode").mode(SaveMode.Append).parquet(Flags.getInstance().getParquetFile());
 
 			return null;
 		});
