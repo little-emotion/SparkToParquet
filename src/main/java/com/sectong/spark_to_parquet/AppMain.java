@@ -22,7 +22,6 @@ import org.apache.spark.streaming.kafka.KafkaUtils;
 
 import kafka.serializer.StringDecoder;
 import scala.Tuple2;
-import scala.collection.Seq;
 
 /**
  * 运行程序，spark-submit --class "com.sectong.spark_to_parquet.AppMain" --master
@@ -56,6 +55,8 @@ public class AppMain {
 
 		// 初始化Spark Conf.
 		SparkConf conf = new SparkConf().setAppName("A SECTONG Application: Apache Log Analysis with Spark");
+		//local
+		//SparkConf conf = new SparkConf().setAppName("A SECTONG Application: Apache Log Analysis with Spark").setMaster("spark://62.234.212.81:7077");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 		JavaStreamingContext jssc = new JavaStreamingContext(sc, Flags.getInstance().getSlideInterval());
 		SQLContext sqlContext = new SQLContext(sc);

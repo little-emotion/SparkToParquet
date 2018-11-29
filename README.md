@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 有一个设想
 
 当有持续不断的结构化或非结构化大数据集以流（streaming）的方式进入分布式计算平台，
@@ -110,3 +111,7 @@ scala代码如下：
 ![](https://blog.sectong.com/blog/spark_to_parquet/squirrel-sql.jpeg)
 
 结果看似简单，但是经历还是很有挑战的。
+=======
+# SparkToParquet
+通过spark streaming读取kafka
+>>>>>>> efe7679de412ac040ee76626483876bd369fcf96

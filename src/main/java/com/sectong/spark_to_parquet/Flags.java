@@ -12,11 +12,14 @@ public class Flags {
 
 	private Duration windowLength;
 	private Duration slideInterval;
-	private String kafka_broker;
-	private String kafka_topic;
+	private static String kafka_broker = "g1s0:9092";//kafka服务器地址
+	private static String kafka_topic = "td_topic";//kafka消息类别
 	private String parquet_file;
 
 	private boolean initialized = false;
+
+//	public static String bootstrapServers = "g1s0:9092";//kafka服务器地址
+//	public static String topic = "td_topic";//kafka消息类别
 
 	private Flags() {
 	}
@@ -49,6 +52,8 @@ public class Flags {
 	}
 
 	public static void setFromCommandLineArgs(Options options, String[] args) {
+
+
 		CommandLineParser parser = new PosixParser();
 		try {
 			CommandLine cl = parser.parse(options, args);
@@ -57,8 +62,8 @@ public class Flags {
 					Integer.parseInt(cl.getOptionValue(AppMain.WINDOW_LENGTH, "30")) * 1000);
 			THE_INSTANCE.slideInterval = new Duration(
 					Integer.parseInt(cl.getOptionValue(AppMain.SLIDE_INTERVAL, "5")) * 1000);
-			THE_INSTANCE.kafka_broker = cl.getOptionValue(AppMain.KAFKA_BROKER, "kafka:9092");
-			THE_INSTANCE.kafka_topic = cl.getOptionValue(AppMain.KAFKA_TOPIC, "apache");
+			THE_INSTANCE.kafka_broker = cl.getOptionValue(AppMain.KAFKA_BROKER, kafka_broker);
+			THE_INSTANCE.kafka_topic = cl.getOptionValue(AppMain.KAFKA_TOPIC, kafka_topic);
 			THE_INSTANCE.parquet_file = cl.getOptionValue(AppMain.PARQUET_FILE, "/user/spark/");
 			THE_INSTANCE.initialized = true;
 		} catch (ParseException e) {
